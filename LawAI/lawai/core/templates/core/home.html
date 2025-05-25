@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Law-AI Home</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'core/css/general.css' %}">
+
+</head>
+<body>
+    <h1>Welcome to Law-AI</h1>
+    <p>Select a feature below:</p>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'upload_pdf' %}">
+            <button style="padding: 10px 20px; font-size: 16px;">PDF Summarizer</button>
+        </a>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'upload_pdf' %}">
+            <button style="padding: 10px 20px; font-size: 16px;">Chat with AI About PDF</button>
+        </a>
+        <p>(Upload a PDF first, then click chat from the next screen)</p>
+    </div>
+
+    <!-- ✅ Replace this section -->
+    <div style="margin-top: 20px;">
+        <a href="{% url 'document_selector' %}">
+            <button style="padding: 10px 20px; font-size: 16px;">Generate Legal Documents</button>
+        </a>
+    </div>
+</body>
+</html>

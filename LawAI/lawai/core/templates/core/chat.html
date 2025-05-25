@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with PDF</title>
+    <link rel="stylesheet" href="{% static 'core/css/general.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Ask a Question About: {{ pdf.file.name }}</h2>
+
+    <form method="get">
+        <input type="text" name="q" placeholder="Ask something..." required>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if answer %}
+        <h3>Answer</h3>
+        <p><strong>Q:</strong> {{ request.GET.q }}</p>
+        <p><strong>A:</strong> {{ answer }}</p>
+    {% endif %}
+
+    {% if chat_history %}
+        <h3>Previous Questions</h3>
+        <ul>
+            {% for chat in chat_history %}
+                <li style="margin-bottom: 10px;">
+                    <strong>Q:</strong> {{ chat.question }}<br>
+                    <strong>A:</strong> {{ chat.answer }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr style="margin: 20px 0;">
+    <a href="{% url 'upload_pdf' %}">⬅ Back to Upload</a> |
+    <a href="{% url 'home' %}">Home</a>
+</div>
+
+</body>
+</html>

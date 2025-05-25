@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload PDF</title>
+    <link rel="stylesheet" href="{% static 'core/css/general.css' %}">
+    <style>
+        /* Style for summary container to prevent overflow */
+        .summary-container {
+            max-height: 400px;       /* limit height */
+            overflow-y: auto;        /* vertical scroll */
+            background: #f9f9f9;     /* subtle background */
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;   /* allow wrapping inside <pre> */
+            word-wrap: break-word;   /* break long words */
+            font-family: monospace, monospace;
+            margin-bottom: 1rem;
+        }
+        a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Upload PDF</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if summary %}
+        <h3>Summary</h3>
+        <div class="summary-container">
+            <pre>{{ summary }}</pre>
+        </div>
+
+        <a href="{% url 'download_summary' form.instance.id %}">Download Summary</a>
+        <br><br>
+
+        <a href="{% url 'chat_pdf' form.instance.id %}">💬 Ask Questions About This PDF</a>
+    {% endif %}
+
+    <hr style="margin: 20px 0;">
+    <a href="{% url 'home' %}">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>

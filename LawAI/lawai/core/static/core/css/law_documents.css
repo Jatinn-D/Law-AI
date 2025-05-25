@@ -1,0 +1,50 @@
+/* law_documents.css */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 2rem;
+    background: #f9f9f9;
+}
+
+.docx-preview {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #0047AB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #002f75;
+}
+
+#preview-container {
+    margin-top: 30px;
+    display: none;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Document</title>
+    <link rel="stylesheet" href="{% static 'core/css/general.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Select a Legal Document to Generate</h2>
+    <ul>
+        <li><a href="{% url 'generate_rental' %}">Rental Agreement</a></li>
+        <li><a href="{% url 'generate_divorce' %}">Divorce Document</a></li>
+        <li><a href="{% url 'generate_land' %}">Land Document</a></li>
+    </ul>
+    
+    <a href="{% url 'upload_pdf' %}">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>

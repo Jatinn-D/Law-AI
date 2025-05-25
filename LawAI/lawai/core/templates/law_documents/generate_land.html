@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Land Sales Agreement</title>
+    <link rel="stylesheet" href="{% static 'core/css/general.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Generate Land Sales Agreement</h2>
+
+    <form id="land-form" method="post" action="{% url 'generate_land' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Download Document</button>
+    </form>
+
+    <button type="button" onclick="previewDocument()">Preview Document</button>
+
+    <div id="preview-container" style="margin-top: 30px; display: none; background: #fff; padding: 1rem; border-radius: 10px; max-height: 600px; overflow-y: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <!-- Preview content will be inserted here -->
+    </div>
+</div>
+
+<script>
+    function previewDocument() {
+        const form = document.getElementById("land-form");
+        const formData = new FormData(form);
+
+        fetch("{% url 'preview_land' %}", {
+            method: "POST",
+            headers: {
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.rendered_html) {
+                const previewContainer = document.getElementById("preview-container");
+                previewContainer.style.display = "block";
+                previewContainer.innerHTML = `<h3>Preview</h3><div>${data.rendered_html.replace(/\n/g, "<br>")}</div>`;
+            } else if (data.error) {
+                alert("Error: " + data.error);
+            }
+        })
+        .catch(err => {
+            alert("Failed to preview document.");
+            console.error(err);
+        });
+    }
+</script>
+
+</body>
+</html>

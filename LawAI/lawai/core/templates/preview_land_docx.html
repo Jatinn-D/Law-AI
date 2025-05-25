@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preview Land Sales Agreement</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/law_documents.css' %}">
+</head>
+<body>
+    <div class="docx-preview">
+        <h2>Land Sales Agreement Preview</h2>
+        {% for para in paragraphs %}
+            <p>{{ para }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
